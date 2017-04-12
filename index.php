@@ -1,5 +1,16 @@
 <?php
 require ('listarAlunos.php');
+if (isset($_GET['ra']) && !empty($_GET['ra'])) {
+    $ra = $_GET['ra'];
+    $rsUpdate = $conexao->query("SELECT * FROM aluno where ALU_RA = $ra");
+    if ($rsUpdate->num_rows > 0) {
+        $aluno = $rsUpdate->fetch_object();
+        echo 'achei alguem';
+    }
+    $acaoForm = 'editar';
+} else {
+    $acaoForm = 'cad';
+}
 ?>
 <!DOCTYPE html>
 <html lang="pt-br">
@@ -11,9 +22,10 @@ require ('listarAlunos.php');
         <?php if ($resultSet->num_rows > -1): ?>
             <fieldset style="width: 200">
                 <legend>Cadastro de alunos</legend>
-                <form method="POST" action="cad_aluno.php">
+                <form method="POST" action="<?php echo $acaoForm; ?>_aluno.php">
+                    <input type="hidden" name ="ra" value="<?php echo @$aluno->ALU_RA; ?>">
                     <label for="nome">Nome</label>
-                    <input type="text" name="nome" id ="">
+                    <input type="text" name="nome" id ="" value=" <?php echo @$aluno->ALU_NOME; ?>">
                     <button type="submit">Salvar</button>
                 </form>
             </fieldset>
@@ -48,6 +60,7 @@ require ('listarAlunos.php');
                             <td><?php echo $aluno['ALU_RA'] ?></td>
                             <td><?php echo $aluno['ALU_NOME'] ?></td>
                             <td><a href="apagar_aluno.php?ra=<?php echo $aluno['ALU_RA']; ?>">apagar</a></td>
+                            <td><a href="index.php?ra=<?php echo $aluno['ALU_RA']; ?>">editar</a></td>
                         </tr>
                     <?php endwhile; ?>
                 </tbody>
