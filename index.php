@@ -8,7 +8,7 @@ require ('listarAlunos.php');
         <title> </title>
     </head>
     <body>
-        <?php if ($resultSet->num_rows > 0): ?>
+        <?php if ($resultSet->num_rows > -1): ?>
             <fieldset style="width: 200">
                 <legend>Cadastro de alunos</legend>
                 <form method="POST" action="cad_aluno.php">
@@ -17,19 +17,19 @@ require ('listarAlunos.php');
                     <button type="submit">Salvar</button>
                 </form>
             </fieldset>
-        
-            <?php 
-                if(isset($_GET['status'])){
-                      if($_GET['status']==0){
-                          echo ('Não foi possível realizar a ação;');
-                      }
-                      if($_GET['status']==1){
-                          echo ('Cadastro efetuado');
-                      }
-                      if($_GET['status']==-1){
-                          echo ('Preenchimento inválido');
-                      }
+
+            <?php
+            if (isset($_GET['status'])) {
+                if ($_GET['status'] == 0) {
+                    echo ('Não foi possível realizar a ação;');
                 }
+                if ($_GET['status'] == 1) {
+                    echo ('Cadastro efetuado');
+                }
+                if ($_GET['status'] == -1) {
+                    echo ('Preenchimento inválido');
+                }
+            }
             ?>
             <table>
                 <caption>
@@ -39,6 +39,7 @@ require ('listarAlunos.php');
                     <tr>
                         <th>RA</th>
                         <th>NOME</th>
+                        <th>ACOES</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -46,6 +47,7 @@ require ('listarAlunos.php');
                         <tr>
                             <td><?php echo $aluno['ALU_RA'] ?></td>
                             <td><?php echo $aluno['ALU_NOME'] ?></td>
+                            <td><a href="apagar_aluno.php?ra=<?php echo $aluno['ALU_RA']; ?>">apagar</a></td>
                         </tr>
                     <?php endwhile; ?>
                 </tbody>
