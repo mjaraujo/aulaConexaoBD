@@ -19,7 +19,8 @@ if (isset($_GET['ra']) && !empty($_GET['ra'])) {
         <title> </title>
     </head>
     <body>
-        <?php if ($resultSet->num_rows > -1): ?>
+        <?php //if ($resultSet->num_rows > -1): 
+              if ($resultSet->rowCount() > -1): ?>
             <fieldset style="width: 200">
                 <legend>Cadastro de alunos</legend>
                 <form method="POST" action="<?php echo $acaoForm; ?>_aluno.php">
@@ -45,7 +46,9 @@ if (isset($_GET['ra']) && !empty($_GET['ra'])) {
             ?>
             <table>
                 <caption>
-                    <?php echo 'Alunos: ' . $resultSet->num_rows ?>
+                    <?php //echo 'Alunos: ' . $resultSet->num_rows 
+                    echo 'Alunos: ' . $resultSet->rowCount() ?>
+                    
                 </caption>
                 <thead>
                     <tr>
@@ -55,7 +58,10 @@ if (isset($_GET['ra']) && !empty($_GET['ra'])) {
                     </tr>
                 </thead>
                 <tbody>
-                    <?php while ($aluno = $resultSet->fetch_array()): ?>
+                    <?php //while ($aluno = $resultSet->fetch_array()):
+                        while ($aluno = $resultSet->fetch(PDO::FETCH_ASSOC)):
+                        
+                        ?>
                         <tr>
                             <td><?php echo $aluno['ALU_RA'] ?></td>
                             <td><?php echo $aluno['ALU_NOME'] ?></td>
