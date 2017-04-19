@@ -1,7 +1,20 @@
 <!DOCTYPE html>
 <?php
 require_once 'listarAlunos.php';
+//TESTE DE CADASTRO DE TELEFONES - TEMPORARIO
+/*    $sql = "INSERT INTO telefones(tf_telefone, tf_alu_ra) "
+            . "VALUES(:tf, :ra)";
+    $stmt = $con->prepare($sql);
 
+    $stmt->bindValue(':tf','(45)3268-1930', PDO::PARAM_STR);
+    $stmt->bindValue(':ra',3, PDO::PARAM_STR);
+    $retorno = $stmt->execute();
+
+    $stmt->bindValue(':tf','(45)2252-1530', PDO::PARAM_STR);
+    $stmt->bindValue(':ra',5, PDO::PARAM_STR);
+    $retorno = $stmt->execute();
+*/
+//
 if(isset($_GET['ra'])&& !empty($_GET['ra'])){
     $ra = $_GET['ra'];
     $rsAl = $con->query('SELECT * FROM alunos WHERE al_ra ='.$ra);
@@ -60,7 +73,7 @@ echo('SELECT * FROM alunos WHERE al_ra='.$ra);echo('<pre>');var_dump($rsAl);echo
                         <td><?php echo $aluno['al_ra'] ?></td>
                         <td><?php echo $aluno['al_nome'] ?></td>
                         <td><a href="apagar_aluno.php?ra=<?php echo $aluno['al_ra'] ?>" > Apagar</a></td>
-                        ,<td><a href="index.php?ra=<?php echo $aluno['al_ra'] ?>" > Editar</a></td>
+                        <td><a href="index.php?ra=<?php echo $aluno['al_ra'] ?>" > Editar</a></td>
                     </tr>
                 <?php endwhile; ?>
             </tbody>
