@@ -1,6 +1,7 @@
 <?php
-    require_once('conexao.php');
-    
-    $resultSet = $conexao->query("SELECT * FROM aluno"); //faz a seleção do banco de dados
-    
-?>
+
+
+require_once ('connect.php');
+
+$rs = $con -> query('select * from alunos');
+
