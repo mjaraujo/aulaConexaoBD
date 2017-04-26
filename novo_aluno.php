@@ -2,7 +2,7 @@
 
 require_once './connect.php';
 
-$nome = $_POST['nome'];
+$nome = $_POST['nomeAluno'];
 
 if (!empty($nome)) {
     //$con->query("INSERT INTO alunos(al_nome) VALUES('$nome')");
