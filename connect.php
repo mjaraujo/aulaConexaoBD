@@ -8,7 +8,7 @@
      */
 
     try {
-       $con = new PDO('mysql:host=localhost;dbname=alunos;charset=utf8','root','utfprsh'); 
+       $con = new PDO('mysql:host=127.0.0.1;dbname=alunos;charset=utf8','root','Caratuma11'); 
       
     } catch (PDOException $ex) {
           throw  new Exception("Erro ao conectar com o banco");

@@ -12,11 +12,6 @@ if (!empty($nome)) {
     $stmt->bindValue(':nome', $nome, PDO::PARAM_STR);
     $retorno = $stmt->execute();
 
-    if($retorno){
-        header('location:index.php?status=1');
-    }else{
-        header('location:index.php?status=0');
-    }
     /* if($con->affected_rows > 0){
       header('location:index.php?status=1');
       }else{

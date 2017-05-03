@@ -2,7 +2,7 @@
 
 require_once './connect.php';
 
-$nome = $_POST['nome'];
+$nome = $_POST['nomeAluno'];
 $ra = $_POST['ra'];
 
 if(!empty($nome) && !empty($ra)){
